@@ -4,10 +4,8 @@
  * @flow
  */
 
-import {
-  AppRegistry,
-} from 'react-native';
+import { AppRegistry } from 'react-native'
 
-import Main from './src/Main';
+import Main from './src/Main'
 
-AppRegistry.registerComponent('LiveTranslator', () => Main);
+AppRegistry.registerComponent('LiveTranslator', () => Main)
