@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import {
-  Animated,
-  Image,
-  StyleSheet,
-  PanResponder
-} from 'react-native';
+import { Animated, Image, StyleSheet, PanResponder } from 'react-native';
 
 const supportedLanguages = [
   {
     key: 'de',
-    src: require('../assets/de.png'),
+    src: require('../assets/de.png')
   },
   {
     key: 'ca',
-    src: require('../assets/ca.png'),
+    src: require('../assets/ca.png')
   },
   {
     key: 'en',
-    src: require('../assets/en.png'),
+    src: require('../assets/en.png')
   },
   {
     key: 'es',
-    src: require('../assets/es.png'),
-  },
+    src: require('../assets/es.png')
+  }
 ];
 
 export default class AnimatedSelect extends Component<*, *, *> {
@@ -30,28 +25,27 @@ export default class AnimatedSelect extends Component<*, *, *> {
     super(props);
 
     this.state = {
-      pan: new Animated.ValueXY(),
+      pan: new Animated.ValueXY()
     };
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event([
         null,
         {
-          dx: this.state.pan.x,
+          dx: this.state.pan.x
           // dy: this.state.pan.y
-        },
+        }
       ]),
       onPanResponderRelease: (e, gesture) => {
         const { dx } = gesture;
         Animated.spring(this.state.pan, {
-          toValue: 0,
+          toValue: 0
           // cannot use animated driver because left is not supported by native
           // animated module
           // useNativeDriver: true
         }).start();
 
         let newIndex;
-
 
         if (dx > 0) {
           // SWIPE RIGHT
@@ -73,7 +67,7 @@ export default class AnimatedSelect extends Component<*, *, *> {
           activeIndex: newIndex,
           targetLanguage: supportedLanguages[newIndex].key
         });
-      },
+      }
     });
   }
 
@@ -105,6 +99,6 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 30,
     width: 60,
-    height: 60,
-  },
+    height: 60
+  }
 });
